@@ -7,7 +7,10 @@
 
         private Animator anim;
         private IKControl IK;
-        
+        private Vector3 target;
+
+        Vector3 forwordDIr;
+        Vector3 changedDIr;
 
         private void Awake()
         {
@@ -17,6 +20,8 @@
 
         void FixedUpdate()
         {
+
+
             float x = Input.GetAxis("Horizontal");
             float y = Input.GetAxis("Vertical");
 
@@ -33,6 +38,7 @@
         {
 
             IK.SetMousePos();
+
             anim.SetFloat("X", x, 0.1f, Time.deltaTime);
             anim.SetFloat("Y", y, 0.1f, Time.deltaTime);
         }

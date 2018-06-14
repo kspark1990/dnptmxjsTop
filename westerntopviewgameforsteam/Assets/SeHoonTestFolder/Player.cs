@@ -57,16 +57,22 @@
             {
                 float x = Input.GetAxis("Horizontal");
                 float y = Input.GetAxis("Vertical");
-                Vector3 dir = new Vector3(y, 0, x);
-
+                Vector3 dir = new Vector3(x, 0, y);
+                
                 //TODO: change this value 
-
+                
                // dir = Quaternion.FromToRotation(dir, transform.forward) * dir;
-              //  Debug.Log(dir);
                 transform.Rotate(new Vector3(0, rotateAngle * Time.fixedDeltaTime, 0));
 
+
+
+                Quaternion rot = Quaternion.FromToRotation(dir, transform.forward);
+                
+                dir = rot * dir;
+                Debug.Log(dir);
+                
                 //actual moving is working with root anim
-                UpdateAnim(dir.x,dir.z);
+            //    UpdateAnim(dir.x, dir.z);
             }
             else if(moveType == MovementType.Type2)
             {

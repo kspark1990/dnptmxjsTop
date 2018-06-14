@@ -4,6 +4,7 @@
 
     public class IKControl : MonoBehaviour
     {
+        private Player player;
 
         public Animator animator;
 
@@ -20,17 +21,15 @@
         
         //
         private Vector3 targetPos;
+
         
 
-        public Vector3 SetMousePos()
+        private void Awake()
         {
-            targetPos = Input.mousePosition;
-            targetPos.z = 10f;
-            targetPos = Camera.main.ScreenToWorldPoint(targetPos);
-            targetPos.y = 1.5f;
-
-            return targetPos;
+            player = GetComponent<Player>();
         }
+
+
 
         //a callback for calculating IK
         void OnAnimatorIK()
@@ -42,7 +41,7 @@
                 {
 
 
-
+                    targetPos = player.SetMousePos();
                     // Set the look target position, if one has been assigned
 
                     animator.SetLookAtWeight(lookWeight, bodyWeight, headWeight, eyesWeight, clampWeight);

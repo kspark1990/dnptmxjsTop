@@ -18,10 +18,13 @@
 
         private float GetrotateAngle()
         {
-            Vector3 forwordDir = transform.forward;
-            Vector3 changedDIr = (targetPos - transform.position);
+            Vector3 forwordDir = transform.forward.normalized;
+            Vector3 changedDIr = (targetPos - transform.position).normalized;
 
-            float rotateAngle = Quaternion.FromToRotation(forwordDir, changedDIr).eulerAngles.y;
+            rotateAngle = Quaternion.FromToRotation(forwordDir, changedDIr).eulerAngles.y;
+            if (rotateAngle > 180f)
+                rotateAngle -= 360f;
+            rotateAngle /= 180f;
             Debug.Log(rotateAngle);
 
 
@@ -41,10 +44,10 @@
         void FixedUpdate()
         {
 
-            GetrotateAngle();
+            
             float x = Input.GetAxis("Horizontal");
             float y = Input.GetAxis("Vertical");
-
+            
             UpdateAnim(x, y);
 
 
@@ -58,9 +61,10 @@
         {
 
             SetMousePos();
-
+            GetrotateAngle();
             anim.SetFloat("X", x, 0.1f, Time.deltaTime);
             anim.SetFloat("Y", y, 0.1f, Time.deltaTime);
+           // anim.SetFloat("rotation",rotateAngle);
         }
 
 

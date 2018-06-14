@@ -45,6 +45,11 @@
         }
 
 
+        void move()
+        {
+            Debug.Log("THIS IS TEST METHOD!");
+        }
+
     }
 
 }

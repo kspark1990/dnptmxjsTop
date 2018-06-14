@@ -6,23 +6,42 @@
     {
 
         private Animator anim;
-        private IKControl IK;
-        private Vector3 target;
+        private Vector3 targetPos;
 
-        Vector3 forwordDIr;
-        Vector3 changedDIr;
+        float rotateAngle = 0f;
 
         private void Awake()
         {
             anim = GetComponent<Animator>();
-            IK = GetComponent<IKControl>();
            
+        }
+
+        private float GetrotateAngle()
+        {
+            Vector3 forwordDir = transform.forward;
+            Vector3 changedDIr = (targetPos - transform.position);
+
+            float rotateAngle = Quaternion.FromToRotation(forwordDir, changedDIr).eulerAngles.y;
+            Debug.Log(rotateAngle);
+
+
+            return rotateAngle;
+        }
+
+        public Vector3 SetMousePos()
+        {
+            targetPos = Input.mousePosition;
+            targetPos.z = 10f;
+            targetPos = Camera.main.ScreenToWorldPoint(targetPos);
+            targetPos.y = 1.5f;
+
+            return targetPos;
         }
 
         void FixedUpdate()
         {
 
-
+            GetrotateAngle();
             float x = Input.GetAxis("Horizontal");
             float y = Input.GetAxis("Vertical");
 
@@ -32,23 +51,19 @@
 
 
         }
-
+        
 
 
         void UpdateAnim(float x, float y)
         {
 
-            IK.SetMousePos();
+            SetMousePos();
 
             anim.SetFloat("X", x, 0.1f, Time.deltaTime);
             anim.SetFloat("Y", y, 0.1f, Time.deltaTime);
         }
 
 
-        void move()
-        {
-            Debug.Log("THIS IS TEST METHOD!");
-        }
 
     }
 

@@ -16,6 +16,7 @@
         {
             anim = GetComponent<Animator>();
             IK = GetComponent<IKControl>();
+           
         }
 
         void FixedUpdate()

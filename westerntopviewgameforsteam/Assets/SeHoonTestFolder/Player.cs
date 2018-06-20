@@ -45,7 +45,8 @@
             targetPos = Input.mousePosition;
             targetPos.z = 10f;
             targetPos = Camera.main.ScreenToWorldPoint(targetPos);
-            targetPos.y = 1.5f;
+            targetPos.y = 1.7f;
+			Debug.Log("MOUSE POSITION DIS : " + Vector3.Distance(transform.position, targetPos));
 
             return targetPos;
         }

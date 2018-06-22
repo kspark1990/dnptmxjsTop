@@ -2,16 +2,24 @@
 {
     using UnityEngine;
 
-    public class Player : MonoBehaviour
+
+	//[RequireComponent(typeof(PlayerController))]
+	[RequireComponent(typeof(GunController))]
+	public class Player : MonoBehaviour
     {
+
         public enum MovementType
         {
             Type1,Type2
         }
 
+
         public MovementType moveType = MovementType.Type1;
         private Animator anim;
         private Vector3 targetPos;
+
+		GunController gunController;
+
 
         float rotateAngle = 0f;
         Vector3 rotateVector;
@@ -24,6 +32,7 @@
             else if(moveType == MovementType.Type2)
                 anim.SetInteger("MoveType", 1);
 
+			gunController = GetComponent<GunController>();
 
 
         }
@@ -46,7 +55,7 @@
             targetPos.z = 10f;
             targetPos = Camera.main.ScreenToWorldPoint(targetPos);
             targetPos.y = 1.7f;
-			Debug.Log("MOUSE POSITION DIS : " + Vector3.Distance(transform.position, targetPos));
+			//Debug.Log("MOUSE POSITION DIS : " + Vector3.Distance(transform.position, targetPos));
 
             return targetPos;
         }
@@ -107,7 +116,19 @@
         }
 
 
+		private void Update()
+		{
+			if (Input.GetMouseButton(0))
+			{
+				gunController.Shoot();
+			}
+		}
 
-    }
+
+	}
+
+	
+
+
 
 }

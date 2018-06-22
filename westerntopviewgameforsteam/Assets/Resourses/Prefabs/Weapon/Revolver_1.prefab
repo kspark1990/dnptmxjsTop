@@ -11,6 +11,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1746743948028706}
   m_IsPrefabParent: 1
+--- !u!1 &1120849424409326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4166153086001966}
+  m_Layer: 0
+  m_Name: RightGrabPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1162447621083090
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,6 +111,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4166153086001966
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1120849424409326}
+  m_LocalRotation: {x: 0.00000002980232, y: 0.00000002980232, z: -0.5716363, w: 0.82050717}
+  m_LocalPosition: {x: 0.364, y: -3.4309998, z: 0.50899994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4422459223594172}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -69.729004}
 --- !u!4 &4273129703822246
 Transform:
   m_ObjectHideFlags: 1
@@ -149,6 +177,7 @@ Transform:
   - {fileID: 4273129703822246}
   - {fileID: 4376058770946534}
   - {fileID: 4403234123822018}
+  - {fileID: 4166153086001966}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -358,6 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205e160ea225a474f8f44a85486b2a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RightGrabPosition: {fileID: 4166153086001966}
   muzzle: {fileID: 4550818361807632, guid: ab36f00de1676ab4fa143ab5f3af8dad, type: 2}
   projectile: {fileID: 0}
   msBetweenShots: 100

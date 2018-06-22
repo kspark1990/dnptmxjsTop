@@ -7,14 +7,14 @@ public class GunController : MonoBehaviour {
     public Transform weaponHold;
     public Gun startingGun;
 	public Gun nextGun;
-    Gun equippedGun;
+    public Gun equippedGun;
 
     void Start()
     {
-        if(startingGun!=null)
-        {
-            EquipGun(startingGun);
-        }
+        //if(startingGun!=null)
+        //{
+        //    EquipGun(startingGun);
+        //}
     }
 
 	public void EquipGun(Gun gunToEquip)

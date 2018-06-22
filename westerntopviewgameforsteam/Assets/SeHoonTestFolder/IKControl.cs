@@ -10,6 +10,7 @@
 
         public bool ikActive = false;
         public Transform rightHandObj = null;
+        public Transform rightElbowObj = null;
 
         //this values are using for look at IK
         [SerializeField]private float lookWeight = 1f;
@@ -55,6 +56,9 @@
                         animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
                         animator.SetIKPosition(AvatarIKGoal.RightHand, rightHandObj.position);
                         animator.SetIKRotation(AvatarIKGoal.RightHand, rightHandObj.rotation);
+
+                      //  animator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 1);
+                       // animator.SetIKHintPosition(AvatarIKHint.RightElbow, rightHandObj.position);
                     }
 
                 }
@@ -65,6 +69,9 @@
                     animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
                     animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 0);
                     animator.SetLookAtWeight(0);
+
+                     //animator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 0);
+                    
                 }
             }
         }

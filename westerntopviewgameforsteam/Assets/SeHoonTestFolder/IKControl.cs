@@ -41,7 +41,6 @@
                 if (ikActive)
                 {
 
-
                     targetPos = player.SetMousePos();
                     // Set the look target position, if one has been assigned
 
@@ -57,8 +56,8 @@
                         animator.SetIKPosition(AvatarIKGoal.RightHand, rightHandObj.position);
                         animator.SetIKRotation(AvatarIKGoal.RightHand, rightHandObj.rotation);
 
-                      //  animator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 1);
-                       // animator.SetIKHintPosition(AvatarIKHint.RightElbow, rightHandObj.position);
+                        animator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 1);
+                        animator.SetIKHintPosition(AvatarIKHint.RightElbow, rightElbowObj.position);
                     }
 
                 }

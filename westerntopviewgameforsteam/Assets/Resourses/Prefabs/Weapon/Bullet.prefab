@@ -187,7 +187,7 @@ TrailRenderer:
     alignment: 0
     textureMode: 1
     generateLightingData: 0
-  m_MinVertexDistance: 0.1
+  m_MinVertexDistance: 0.2
   m_Autodestruct: 0
 --- !u!114 &114097126172450448
 MonoBehaviour:

@@ -20,6 +20,8 @@ public class Projectile : MonoBehaviour {
 		{
 			OnHitObject(initialCollisions[0]);
 		}
+
+
 	}
 
 	public void SetSpeed(float newSpeed)

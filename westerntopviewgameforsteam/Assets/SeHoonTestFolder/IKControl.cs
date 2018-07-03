@@ -12,6 +12,10 @@
         public Transform rightHandObj = null;
         public Transform rightElbowObj = null;
 
+		public Transform leftHandObj = null;
+
+
+
         //this values are using for look at IK
         [SerializeField]private float lookWeight = 1f;
         [SerializeField] private float bodyWeight = 0.6f;
@@ -48,6 +52,15 @@
                     animator.SetLookAtPosition(targetPos);
 
                     // Set the right hand target position and rotation, if one has been assigned
+
+
+
+
+
+
+
+
+
                     if (rightHandObj != null)
                     {
                         
@@ -56,8 +69,8 @@
                         animator.SetIKPosition(AvatarIKGoal.RightHand, rightHandObj.position);
                         animator.SetIKRotation(AvatarIKGoal.RightHand, rightHandObj.rotation);
 
-                        animator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 1);
-                        animator.SetIKHintPosition(AvatarIKHint.RightElbow, rightElbowObj.position);
+                  //      animator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 1);
+                    //    animator.SetIKHintPosition(AvatarIKHint.RightElbow, rightElbowObj.position);
                     }
 
                 }

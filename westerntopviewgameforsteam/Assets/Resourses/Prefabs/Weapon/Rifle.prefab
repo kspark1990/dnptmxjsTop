@@ -431,8 +431,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205e160ea225a474f8f44a85486b2a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunShotSmoke: {fileID: 0}
+  RightGrabPosition: {fileID: 0}
   muzzle: {fileID: 4215431605380038}
   projectile: {fileID: 114097126172450448, guid: ab36f00de1676ab4fa143ab5f3af8dad,
     type: 2}
-  msBetweenShots: 100
+  damage: 3
+  msBetweenShots: 150
   muzzleVelocity: 35
+  Accuarcy: 1.5

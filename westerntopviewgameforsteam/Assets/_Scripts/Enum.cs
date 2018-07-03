@@ -15,3 +15,12 @@ public enum eTeamType
 	MAX
 
 }
+
+
+public enum eGunType
+{
+	Revolver,
+	Rifle,
+	Shotgun,
+	MAX
+}

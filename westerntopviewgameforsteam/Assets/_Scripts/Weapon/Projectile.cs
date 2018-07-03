@@ -6,13 +6,16 @@ public class Projectile : MonoBehaviour {
 
     public LayerMask collisionMask;
     float speed = 10;
-    float damage = 1;
+    public float damage = 1;
 
 	float lifetime = 3;
 	float skinWidth = .1f;
 
 	private void Start()
 	{
+
+
+
 		Destroy(gameObject, lifetime);
 
 		Collider[] initialCollisions = Physics.OverlapSphere(transform.position, .1f, collisionMask);

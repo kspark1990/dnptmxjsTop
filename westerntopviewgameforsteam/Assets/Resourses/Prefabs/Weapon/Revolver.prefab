@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 64892692889302786}
   - component: {fileID: 114290683666795048}
   m_Layer: 0
-  m_Name: Revolver_1
+  m_Name: Revolver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -387,8 +387,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205e160ea225a474f8f44a85486b2a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunType: 0
+  gunShotSmoke: {fileID: 0}
   RightGrabPosition: {fileID: 4166153086001966}
   muzzle: {fileID: 4550818361807632, guid: ab36f00de1676ab4fa143ab5f3af8dad, type: 2}
   projectile: {fileID: 0}
+  damage: 1
   msBetweenShots: 100
   muzzleVelocity: 35
+  Accuarcy: 1

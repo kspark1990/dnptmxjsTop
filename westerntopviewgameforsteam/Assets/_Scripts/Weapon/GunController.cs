@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour {
 
+	List<Gun> gunList = new List<Gun>();
+
+
+
     public Transform weaponHold;
     public Gun startingGun;
 	public Gun nextGun;
@@ -11,11 +15,28 @@ public class GunController : MonoBehaviour {
 
     void Start()
     {
-        //if(startingGun!=null)
-        //{
-        //    EquipGun(startingGun);
-        //}
-    }
+        for(int i= 0; i <(int)eGunType.MAX; i++)
+		{
+			Gun go = Resources.Load("Prefabs/Weapon/" + ((eGunType)i).ToString("F")) as Gun;
+
+			if (go == null)
+			{
+				Debug.LogError(((eGunType)i).ToString("F") + "Load Failed.");
+				continue;
+			}
+			else
+			{
+				gunList.Add(go);
+				Debug.Log(((eGunType)i).ToString("F") + " load succese");
+			}
+
+
+		}
+
+
+
+
+	}
 
 	public void EquipGun(Gun gunToEquip)
     {

@@ -135,11 +135,41 @@ public class Player : Actor
 
 		if (Input.GetKeyDown(KeyCode.F1))
 		{
+			gunController.EquipGun(eGunType.Rifle);
+		}
 
+
+		//test
+		if (isGround == false)
+		{
+			this.transform.Translate(new Vector3(0, -9.8f * Time.deltaTime, 0));
 		}
 
 
 	}
+
+
+	//test
+
+	bool isGround = false;
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.collider.tag == "ground")
+		{
+			isGround = true;
+		}
+	}
+
+	private void OnCollisionExit(Collision collision)
+	{
+		if (collision.collider.tag == "ground")
+		{
+			isGround = false;
+		}
+	}
+
+
 
 
 }

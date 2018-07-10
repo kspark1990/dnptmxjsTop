@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour {
 
-	List<Gun> gunList = new List<Gun>();
+//	List<Gun> gunList = new List<Gun>();
 
 
 
@@ -12,40 +12,35 @@ public class GunController : MonoBehaviour {
     public Gun startingGun;
 	public Gun nextGun;
     public Gun equippedGun;
+	IKControl IK;
+
 
     void Start()
     {
-        for(int i= 0; i <(int)eGunType.MAX; i++)
-		{
-			Gun go = Resources.Load("Prefabs/Weapon/" + ((eGunType)i).ToString("F")) as Gun;
-
-			if (go == null)
-			{
-				Debug.LogError(((eGunType)i).ToString("F") + "Load Failed.");
-				continue;
-			}
-			else
-			{
-				gunList.Add(go);
-				Debug.Log(((eGunType)i).ToString("F") + " load succese");
-			}
-
-
-		}
-
-
-
+		IK = GetComponent<IKControl>();
 
 	}
 
-	public void EquipGun(Gun gunToEquip)
+	public void EquipGun(eGunType type)
     {
-        if (equippedGun != null)
+		Gun gunToEquip = WeaponManager.Instance.GetGunPrefab(type).GetComponent<Gun>();
+
+
+
+		if (equippedGun != null)
         {
             Destroy(equippedGun.gameObject);
         }
+
+
+
+
         equippedGun = Instantiate(gunToEquip, weaponHold.position, weaponHold.rotation)as Gun;
-        equippedGun.transform.parent = weaponHold;
+        equippedGun.transform.parent = this.transform;
+
+		IK.rightHandObj = equippedGun.RightGrabPosition;
+
+
     }
 
     public void Shoot()

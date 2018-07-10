@@ -1,5 +1,4 @@
-﻿namespace SeHoonStuff
-{
+﻿
     using UnityEngine;
 
     public class IKControl : MonoBehaviour
@@ -88,4 +87,4 @@
             }
         }
     }
-}
+

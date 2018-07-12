@@ -140,17 +140,18 @@ public class Player : Actor
 
 
 		//test
+        /*
 		if (isGround == false)
 		{
 			this.transform.Translate(new Vector3(0, -9.8f * Time.deltaTime, 0));
 		}
 
-
+        */
 	}
 
 
 	//test
-
+    /*
 	bool isGround = false;
 
 	private void OnCollisionEnter(Collision collision)
@@ -169,7 +170,7 @@ public class Player : Actor
 		}
 	}
 
-
+    */
 
 
 }

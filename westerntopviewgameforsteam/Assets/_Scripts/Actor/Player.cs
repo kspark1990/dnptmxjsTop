@@ -15,18 +15,23 @@ public class Player : Actor
 
     public MovementType moveType = MovementType.Type1;
     private Animator anim;
-    private Vector3 targetPos;
+
+	[HideInInspector]
+    public Vector3 targetPos;
 
 	GunController gunController;
 
 	Camera viewCamera;
 
+	Gun gun;
 
 
     float rotateAngle = 0f;
     Vector3 rotateVector;
     private void Awake()
     {
+		gun = GetComponentInChildren<Gun>();
+
         anim = GetComponent<Animator>();
 
         if (moveType == MovementType.Type1)
@@ -38,7 +43,11 @@ public class Player : Actor
 
 		viewCamera = Camera.main;
 
+		CameraManager.Instance.player = this.gameObject;
 
+
+
+		//Cursor.visible = false;
     }
 
     private float GetrotateAngle()
@@ -53,20 +62,55 @@ public class Player : Actor
         return rotateAngle/180f;
     }
 
-    public Vector3 SetMousePos()
+	//public void LookAt(Vector3 lookPoint)
+	//{
+	//	Vector3 heightCorrectedPoint = new Vector3(lookPoint.x, transform.position.y, lookPoint.z);
+	//	transform.LookAt(heightCorrectedPoint);
+	//}
+	Vector3 heightCorrectedPoint;
+	//Vector3 point;
+	public Vector3 SetMousePos()
     {
-
-		targetPos = Input.mousePosition;
-		targetPos.z = 10f;
-		targetPos = Camera.main.ScreenToWorldPoint(targetPos);
-		targetPos.y = 1.7f;
-		//find 
-
-		//if (Vector3.Distance(targetPos,transform.position) >= 5f)
+		// 바라보는 방향
 		
+		Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition);
 
-			// 바라보는 방향
+		//Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+
+		Plane groundPlane = new Plane(Vector3.up, Vector3.up * 1.5f);
+		
+		float rayDistance;
+
+		if (groundPlane.Raycast(ray, out rayDistance))
+		{
+			//point = ray.GetPoint(rayDistance-gun.muzzle.position.y);
+			Vector3 point = ray.GetPoint(rayDistance);
+			heightCorrectedPoint = new Vector3(point.x, transform.position.y, point.z);
+			//Debug.DrawLine(ray.origin, point, Color.red);
+			//controller.LookAt(point);
+
+
+		}
+
+
+
+
+		targetPos = heightCorrectedPoint;
+		//targetPos = point;
+
 		return targetPos;
+
+		//targetPos = Input.mousePosition;
+		//targetPos.z = 10f;
+		//targetPos = Camera.main.ScreenToWorldPoint(targetPos);
+		//targetPos.y = 1.7f;
+		////find 
+
+		////if (Vector3.Distance(targetPos,transform.position) >= 5f)
+
+
+		//	// 바라보는 방향
+		//return targetPos;
 
 	}
 
@@ -136,6 +180,7 @@ public class Player : Actor
 		if (Input.GetKeyDown(KeyCode.F1))
 		{
 			gunController.EquipGun(eGunType.Rifle);
+			gun = GetComponentInChildren<Gun>();
 		}
 
 

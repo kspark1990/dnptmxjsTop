@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour {
     float speed = 10;
     public float damage = 1;
 
-	float lifetime = 3;
+	float lifetime = 10000;
 	float skinWidth = .1f;
 
 	private void Start()

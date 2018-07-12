@@ -23,8 +23,7 @@ public class Gun : MonoBehaviour {
 
     float nextShotTime;
 
-
-    public void Shoot()
+	public void Shoot()
     {
         if (Time.time > nextShotTime)
         {
@@ -32,7 +31,9 @@ public class Gun : MonoBehaviour {
 
 			if (gunType == eGunType.Revolver || gunType == eGunType.Rifle)
 			{
-				Projectile newProjectile = Instantiate(projectile, muzzle.position, muzzle.rotation) as Projectile;
+				//Projectile newProjectile = Instantiate(projectile, muzzle.position, muzzle.rotation) as Projectile;
+				Projectile newProjectile = Instantiate(projectile, muzzle.position,muzzle.rotation ) as Projectile;
+
 				newProjectile.transform.Rotate(newProjectile.transform.up, GetRandomRange());
 				newProjectile.SetSpeed(muzzleVelocity);
 				newProjectile.damage = damage;
@@ -66,7 +67,23 @@ public class Gun : MonoBehaviour {
 	}
 
 
+	//test
+	Player player;
+	Vector3 aimPos;
+	private void Awake()
+	{
+		player = GetComponentInParent<Player>();
+	}
 
+	float Mindist = 3f;
+	private void Update()
+	{
+		
+
+		aimPos = new Vector3(player.targetPos.x, muzzle.position.y, player.targetPos.z);
+		if(Vector3.Distance(player.transform.position,player.targetPos) >= Mindist)
+			transform.LookAt(aimPos);
+	}
 
 
 

@@ -9,7 +9,8 @@ public class MainCamera : MonoBehaviour {
 
 	private void LateUpdate()
 	{
-		transform.position = new Vector3(player.transform.position.x, player.transform.position.y+25, player.transform.position.z);
+		transform.position = new Vector3(player.transform.position.x, player.transform.position.y+15, player.transform.position.z-7f);
+		transform.rotation = Quaternion.Euler(60, 0, 0);
 	}
 
 

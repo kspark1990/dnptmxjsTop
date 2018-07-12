@@ -45,11 +45,15 @@
                 {
 
                     targetPos = player.SetMousePos();
-                    // Set the look target position, if one has been assigned
+				// Set the look target position, if one has been assigned
 
-                    animator.SetLookAtWeight(lookWeight, bodyWeight, headWeight, eyesWeight, clampWeight);
-                    animator.SetLookAtPosition(targetPos);
+				//if ((targetPos - transform.position).sqrMagnitude >= 2)
+				//{
+				//	animator.SetLookAtWeight(lookWeight, bodyWeight, headWeight, eyesWeight, clampWeight);
 
+
+				//	animator.SetLookAtPosition(targetPos);
+				//}	
                     // Set the right hand target position and rotation, if one has been assigned
 
 

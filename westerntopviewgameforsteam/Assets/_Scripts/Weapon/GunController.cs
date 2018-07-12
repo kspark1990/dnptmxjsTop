@@ -18,7 +18,7 @@ public class GunController : MonoBehaviour {
     void Start()
     {
 		IK = GetComponent<IKControl>();
-
+		
 	}
 
 	public void EquipGun(eGunType type)

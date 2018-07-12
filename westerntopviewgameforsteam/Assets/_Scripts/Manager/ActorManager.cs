@@ -62,6 +62,7 @@ public class ActorManager : MonoSingleton<ActorManager>
 		// 플레이어 생성
 		GameObject go = Instantiate(playerPrefab, pos, Quaternion.identity);
 
+
 		return go.GetComponent<Actor>();
 	}
 

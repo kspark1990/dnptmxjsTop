@@ -34,11 +34,17 @@ public class GunController : MonoBehaviour {
 
 
 
+		//weaponHold transform have Gun's position and rotation.(not local)
+		Transform gunPosRot = weaponHold.GetChild((int)type);
 
-        equippedGun = Instantiate(gunToEquip, weaponHold.position, weaponHold.rotation)as Gun;
+		equippedGun = Instantiate(gunToEquip, gunPosRot.position, gunPosRot.rotation) as Gun;
         equippedGun.transform.parent = this.transform;
 
 		IK.rightHandObj = equippedGun.RightGrabPosition;
+		if(type == eGunType.Rifle || type == eGunType.Shotgun)
+		{
+			IK.leftHandObj = equippedGun.LeftGrabPosition;
+		}
 
 
     }

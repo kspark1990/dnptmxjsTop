@@ -9,14 +9,16 @@ public class Gun : MonoBehaviour {
 
 	public ParticleSystem gunShotSmoke;
 	public Transform RightGrabPosition;
-    public Transform muzzle;
+	public Transform LeftGrabPosition;
+
+	public Transform muzzle;
     public Projectile projectile;
 
 
 	public float damage = 1;
 	public float msBetweenShots = 100;
     public float muzzleVelocity = 35;
-	public float Accuarcy = 0;
+	public float Accuarcy = 3;
 
 	Vector3 shootAccuarcy;
 
@@ -46,8 +48,10 @@ public class Gun : MonoBehaviour {
 					
 					Projectile newProjectile = Instantiate(projectile, muzzle.position, muzzle.rotation) as Projectile;
 					newProjectile.transform.Rotate(newProjectile.transform.up, GetRandomRange());
-					newProjectile.SetSpeed(muzzleVelocity+GetRandomRange()*10);
+					newProjectile.SetSpeed(muzzleVelocity+GetRandomRange());
 					newProjectile.damage = damage;
+					gunShotSmoke.Play();
+					gunShotSmoke.Play();
 				}
 			}
 
@@ -68,21 +72,32 @@ public class Gun : MonoBehaviour {
 
 
 	//test
-	Player player;
+	Actor actor;
 	Vector3 aimPos;
-	private void Awake()
+	
+
+	float rotateAngle = 0;
+
+	private void Start()
 	{
-		player = GetComponentInParent<Player>();
+		actor = GetComponentInParent<Actor>();
 	}
 
-	float Mindist = 3f;
+	float mindist = 3f;
+
+
 	private void Update()
 	{
-		
 
-		aimPos = new Vector3(player.targetPos.x, muzzle.position.y, player.targetPos.z);
-		if(Vector3.Distance(player.transform.position,player.targetPos) >= Mindist)
+		aimPos = new Vector3(actor.targetPos.x, muzzle.position.y, actor.targetPos.z);
+
+		Quaternion rot = Quaternion.LookRotation(actor.targetPos);
+
+		//fixedAimPos = Vector3.Lerp(transform.forward, aimPos, lerpAim*Time.deltaTime);
+
+		if (Vector3.Distance(actor.transform.position, actor.targetPos) >= mindist)
 			transform.LookAt(aimPos);
+
 	}
 
 

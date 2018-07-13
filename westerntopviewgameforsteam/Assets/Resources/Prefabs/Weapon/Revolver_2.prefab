@@ -372,7 +372,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 1213213946b39114083bc78376da0569, type: 3}
@@ -397,3 +397,4 @@ MonoBehaviour:
   msBetweenShots: 100
   muzzleVelocity: 35
   Accuarcy: 1
+  lerpAim: 0

@@ -18,7 +18,7 @@ public class Gun : MonoBehaviour {
 	public float damage = 1;
 	public float msBetweenShots = 100;
     public float muzzleVelocity = 35;
-	public float Accuarcy = 3;
+	public float Accuarcy = 2;
 
 	Vector3 shootAccuarcy;
 
@@ -56,8 +56,6 @@ public class Gun : MonoBehaviour {
 			}
 
 			gunShotSmoke.Play();
-
-
 
         }
 

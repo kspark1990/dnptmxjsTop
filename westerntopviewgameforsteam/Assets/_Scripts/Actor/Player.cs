@@ -16,25 +16,31 @@ public class Player : Actor
 
 	Camera viewCamera;
 
-
     float rotateAngle = 0f;
     Vector3 rotateVector;
+
+	public float Acc;
+
+
+	[HideInInspector]
+	public float DisPlayPositionToTargetPos;
+
     private void Awake()
     {
-
 		base.Init();
-
 
         if (moveType == MovementType.Type1)
             anim.SetInteger("MoveType", 0);
         else if(moveType == MovementType.Type2)
             anim.SetInteger("MoveType", 1);
 
-	
 		viewCamera = Camera.main;
 		CameraManager.Instance.player = this.gameObject;
 
-    }
+		Acc = gun.Accuarcy;
+		Debug.Log("Player Acc " + Acc);
+
+	}
 
     private float GetrotateAngle()
     {
@@ -66,7 +72,10 @@ public class Player : Actor
 			heightCorrectedPoint = new Vector3(point.x, transform.position.y, point.z);
 		}
 		targetPos = heightCorrectedPoint;
-		
+
+		DisPlayPositionToTargetPos = Vector3.Distance(targetPos, this.transform.position);
+
+
 		return base.TargetPos();
 	}
 
@@ -80,7 +89,6 @@ public class Player : Actor
             Vector3 dir = new Vector3(x, 0, y);
 
 			Vector3 moveDir = transform.InverseTransformDirection(dir);
-
 
             transform.Rotate(new Vector3(0, rotateAngle * 10f * Time.fixedDeltaTime, 0));
                 
@@ -96,13 +104,10 @@ public class Player : Actor
 
     }
         
-
-
     void UpdateAnim(float x, float y)
     {
         if(moveType == MovementType.Type1)
         {
-			//SetMousePos();
 			TargetPos();
             anim.SetFloat("X", x, 0.1f, Time.deltaTime);
             anim.SetFloat("Y", y, 0.1f, Time.deltaTime);
@@ -123,13 +128,12 @@ public class Player : Actor
 			gunController.Shoot();
 		}
 
-
-
 		if (Input.GetKeyDown(KeyCode.F1))
 		{
 			gunController.EquipGun(eGunType.Revolver);
 			IK.gunType = eGunType.Revolver;
 			gun = GetComponentInChildren<Gun>();
+			
 		}
 		if (Input.GetKeyDown(KeyCode.F2))
 		{

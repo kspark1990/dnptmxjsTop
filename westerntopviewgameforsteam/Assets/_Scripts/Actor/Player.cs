@@ -12,18 +12,9 @@ public class Player : Actor
         Type1,Type2
     }
 
-
     public MovementType moveType = MovementType.Type1;
-    //private Animator anim;
-
-	//[HideInInspector]
-    //public Vector3 targetPos;
-
-	//GunController gunController;
 
 	Camera viewCamera;
-
-	//Gun gun;
 
 
     float rotateAngle = 0f;
@@ -32,24 +23,17 @@ public class Player : Actor
     {
 
 		base.Init();
-		//gun = GetComponentInChildren<Gun>();
-		
-        //anim = GetComponent<Animator>();
+
 
         if (moveType == MovementType.Type1)
             anim.SetInteger("MoveType", 0);
         else if(moveType == MovementType.Type2)
             anim.SetInteger("MoveType", 1);
 
-		//gunController = GetComponent<GunController>();
-
+	
 		viewCamera = Camera.main;
-
 		CameraManager.Instance.player = this.gameObject;
 
-
-
-		//Cursor.visible = false;
     }
 
     private float GetrotateAngle()
@@ -64,20 +48,13 @@ public class Player : Actor
         return rotateAngle/180f;
     }
 
-	//public void LookAt(Vector3 lookPoint)
-	//{
-	//	Vector3 heightCorrectedPoint = new Vector3(lookPoint.x, transform.position.y, lookPoint.z);
-	//	transform.LookAt(heightCorrectedPoint);
-	//}
 	Vector3 heightCorrectedPoint;
-	//Vector3 point;
+
 	public override Vector3 TargetPos()
 	{
 		// 바라보는 방향
 
 		Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition);
-
-		//Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
 
 		Plane groundPlane = new Plane(Vector3.up, Vector3.up * 1.5f);
 
@@ -85,68 +62,13 @@ public class Player : Actor
 
 		if (groundPlane.Raycast(ray, out rayDistance))
 		{
-			//point = ray.GetPoint(rayDistance-gun.muzzle.position.y);
 			Vector3 point = ray.GetPoint(rayDistance);
 			heightCorrectedPoint = new Vector3(point.x, transform.position.y, point.z);
-			//Debug.DrawLine(ray.origin, point, Color.red);
-			//controller.LookAt(point);
-
-
 		}
-
-
 		targetPos = heightCorrectedPoint;
-		//targetPos = point;
-
+		
 		return base.TargetPos();
 	}
-
-
-
-	//public Vector3 SetMousePos()
- //   {
-	//	// 바라보는 방향
-		
-	//	Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition);
-
-	//	//Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-
-	//	Plane groundPlane = new Plane(Vector3.up, Vector3.up * 1.5f);
-		
-	//	float rayDistance;
-
-	//	if (groundPlane.Raycast(ray, out rayDistance))
-	//	{
-	//		//point = ray.GetPoint(rayDistance-gun.muzzle.position.y);
-	//		Vector3 point = ray.GetPoint(rayDistance);
-	//		heightCorrectedPoint = new Vector3(point.x, transform.position.y, point.z);
-	//		//Debug.DrawLine(ray.origin, point, Color.red);
-	//		//controller.LookAt(point);
-
-
-	//	}
-
-
-
-
-	//	targetPos = heightCorrectedPoint;
-	//	//targetPos = point;
-
-	//	return targetPos;
-
-	//	//targetPos = Input.mousePosition;
-	//	//targetPos.z = 10f;
-	//	//targetPos = Camera.main.ScreenToWorldPoint(targetPos);
-	//	//targetPos.y = 1.7f;
-	//	////find 
-
-	//	////if (Vector3.Distance(targetPos,transform.position) >= 5f)
-
-
-	//	//	// 바라보는 방향
-	//	//return targetPos;
-
-	//}
 
     void FixedUpdate()
     {
@@ -159,17 +81,8 @@ public class Player : Actor
 
 			Vector3 moveDir = transform.InverseTransformDirection(dir);
 
-            //TODO: change this value 
-                
-            // dir = Quaternion.FromToRotation(dir, transform.forward) * dir;
+
             transform.Rotate(new Vector3(0, rotateAngle * 10f * Time.fixedDeltaTime, 0));
-
-			
-
-            //Quaternion rot = Quaternion.FromToRotation(dir, transform.forward);
-                
-            //dir = rot * dir;
-            //Debug.Log(dir);
                 
             //actual moving is working with root anim
             UpdateAnim(moveDir.x, moveDir.z);
@@ -180,8 +93,6 @@ public class Player : Actor
             float rotation = Input.GetAxis("Horizontal");
             UpdateAnim(rotation,y);
         }
-
-
 
     }
         
@@ -233,40 +144,7 @@ public class Player : Actor
 			gun = GetComponentInChildren<Gun>();
 		}
 
-
-
-		//test
-		/*
-		if (isGround == false)
-		{
-			this.transform.Translate(new Vector3(0, -9.8f * Time.deltaTime, 0));
-		}
-
-        */
 	}
-
-
-	//test
-    /*
-	bool isGround = false;
-
-	private void OnCollisionEnter(Collision collision)
-	{
-		if (collision.collider.tag == "ground")
-		{
-			isGround = true;
-		}
-	}
-
-	private void OnCollisionExit(Collision collision)
-	{
-		if (collision.collider.tag == "ground")
-		{
-			isGround = false;
-		}
-	}
-
-    */
 
 
 }

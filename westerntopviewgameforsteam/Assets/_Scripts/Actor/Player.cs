@@ -40,6 +40,8 @@ public class Player : Actor
 		Acc = gun.Accuarcy;
 		Debug.Log("Player Acc " + Acc);
 
+		UIManager.Instance.OnAim();
+		UIManager.Instance.player = GetComponent<Player>();
 	}
 
     private float GetrotateAngle()
@@ -131,21 +133,21 @@ public class Player : Actor
 		if (Input.GetKeyDown(KeyCode.F1))
 		{
 			gunController.EquipGun(eGunType.Revolver);
-			IK.gunType = eGunType.Revolver;
-			gun = GetComponentInChildren<Gun>();
+			//IK.gunType = eGunType.Revolver;
+			//gun = GetComponentInChildren<Gun>();
 			
 		}
 		if (Input.GetKeyDown(KeyCode.F2))
 		{
 			gunController.EquipGun(eGunType.Rifle);
-			IK.gunType = eGunType.Rifle;
-			gun = GetComponentInChildren<Gun>();
+			//IK.gunType = eGunType.Rifle;
+			//gun = GetComponentInChildren<Gun>();
 		}
 		if (Input.GetKeyDown(KeyCode.F3))
 		{
 			gunController.EquipGun(eGunType.Shotgun);
-			IK.gunType = eGunType.Shotgun;
-			gun = GetComponentInChildren<Gun>();
+			//IK.gunType = eGunType.Shotgun;
+			//gun = GetComponentInChildren<Gun>();
 		}
 
 	}

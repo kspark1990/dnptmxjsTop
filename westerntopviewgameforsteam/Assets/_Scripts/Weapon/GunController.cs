@@ -13,12 +13,14 @@ public class GunController : MonoBehaviour {
 	public Gun nextGun;
     public Gun equippedGun;
 	IKControl IK;
-
+	Actor actor;
+	AimUI aimUI;
 
     void Start()
     {
 		IK = GetComponent<IKControl>();
-		
+		actor = GetComponent<Actor>();
+
 	}
 
 	public void EquipGun(eGunType type)
@@ -32,8 +34,6 @@ public class GunController : MonoBehaviour {
             Destroy(equippedGun.gameObject);
         }
 
-
-
 		//weaponHold transform have Gun's position and rotation.(not local)
 		Transform gunPosRot = weaponHold.GetChild((int)type);
 
@@ -46,8 +46,25 @@ public class GunController : MonoBehaviour {
 			IK.leftHandObj = equippedGun.LeftGrabPosition;
 		}
 
+		IK.gunType = type;
+		actor.gun = equippedGun.GetComponent<Gun>();
 
-    }
+
+		
+		aimUI = UIManager.Instance.Aim.GetComponent<AimUI>();
+		if (aimUI == null)
+			Debug.LogError("AimUI NULL");
+		else
+			Debug.Log("Aim!");
+
+
+
+
+	}
+
+
+
+
 
     public void Shoot()
     {

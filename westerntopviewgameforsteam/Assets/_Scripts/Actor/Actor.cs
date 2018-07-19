@@ -13,7 +13,7 @@ public class Actor : MonoBehaviour {
 
 	protected GunController gunController;
 	protected Animator anim;
-	protected Gun gun;
+	public Gun gun;
 	public Vector3 targetPos;
 
 	protected IKControl IK;
